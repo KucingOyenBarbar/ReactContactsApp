@@ -3,13 +3,20 @@
 
 import React, { Component } from "react";
 
-interface ContactInputInterface extends React.FC<any> {
+interface ContactInputInterface {
   name: string;
   tag: string;
 }
+type AddContactArg = { name: string; tag: string };
+type ContactInputProps = {
+  addContact: ({ name, tag }: AddContactArg) => void;
+};
 
-export default class ContactInput extends Component<{}, ContactInputInterface> {
-  constructor(props: {}) {
+export default class ContactInput extends Component<
+  ContactInputProps,
+  ContactInputInterface
+> {
+  constructor(props: { addContact: ({ name, tag }: AddContactArg) => void }) {
     super(props);
     // Initial state
     this.state = {
